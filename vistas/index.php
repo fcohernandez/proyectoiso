@@ -162,30 +162,26 @@
                     <div class="panel-body table-responsive" id="listadoregistros">
                         <table id="tbllistado" class="table table-striped table-bordered table-condensed table-hover">
                           <thead> 
-                            <th>ID</th>
+                            <th>Opciones</th>
                             <th>Nombre</th>
                           </thead>
                           <tbody>                            
                           </tbody>
                           <tfoot>
-                            <th>ID</th>
+                            <th>Opciones</th>
                             <th>Nombre</th>
                           </tfoot>
                         </table>
                     </div>
                     <div class="panel-body" style="height: 400px;" id="formularioregistros">
                         <form name="formulario" id="formulario" method="POST">
-                            <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                <label>Id cuadrilla:</label>
-                                <input type="text" class="form-control" name="id_cuadrilla" id="id_cuadrilla" maxlength="20" placeholder="id cuadrilla" required>
-                            </div>
-                          <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <label>Nombre cuadrilla:</label>
+                            <input type="hidden" name="id_cuadrilla" id="id_cuadrilla">
                             <input type="text" class="form-control" name="nombre_cuadrilla" id="nombre_cuadrilla" maxlength="20" placeholder="nombre cuadrilla" required>
                           </div>
                           <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <button class="btn btn-primary" type="submit" id="btnGuardar" ><i class="fa fa-save"></i> Guardar</button>
-
                             <button class="btn btn-danger" onclick="cancelarForm()" type="button"><i class="fa fa-arrow-circle-left"></i> Cancelar</button>
                           </div>
                         </form>

@@ -9,9 +9,9 @@ Class Cuadrilla{
         
     }
 
-    public function insertar($id_cuadrilla,$nombre_cuadrilla){
-        $sql = "INSERT INTO cuadrilla (id_cuadrilla,nombre_cuadrilla)
-                VALUES ('$id_cuadrilla','$nombre_cuadrilla')";
+    public function insertar($nombre_cuadrilla){
+        $sql = "INSERT INTO cuadrilla (nombre_cuadrilla)
+                VALUES ('$nombre_cuadrilla')";
         return ejecutarConsulta($sql);
     }
 
@@ -22,9 +22,16 @@ Class Cuadrilla{
 
     public function editar($id_cuadrilla,$nombre_cuadrilla)
 	{
-		$sql="UPDATE cuadrilla SET nombre_cuadrilla='$nombre_cuadrilla' WHERE idcategoria='$id_cuadrilla'";
+		$sql="UPDATE cuadrilla SET nombre_cuadrilla='$nombre_cuadrilla' WHERE id_cuadrilla='$id_cuadrilla'";
 		return ejecutarConsulta($sql);
-	}
+    }
+    
+    //Implementar un método para mostrar los datos de un registro a modificar
+    public function mostrar($id_cuadrilla)
+    {
+        $sql="SELECT * FROM cuadrilla WHERE id_cuadrilla='$id_cuadrilla'";
+        return ejecutarConsultaSimpleFila($sql);
+    }
 
 }
 

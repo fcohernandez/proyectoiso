@@ -7,8 +7,19 @@ $id_cuadrilla=isset($_POST["id_cuadrilla"])? limpiarCadena($_POST["id_cuadrilla"
 $nombre_cuadrilla=isset($_POST["nombre_cuadrilla"])? limpiarCadena($_POST["nombre_cuadrilla"]):"";
 
 switch ($_GET["op"]){
-	case 'guardar':
-			$rspta=$cuadrilla->insertar($id_cuadrilla,$nombre_cuadrilla);
+	case 'guardaryeditar':
+		if (empty($id_cuadrilla)){
+			$rspta=$cuadrilla->insertar($nombre_cuadrilla);
+			echo $rspta ? "Categoría registrada" : "Categoría no se pudo registrar";
+		}
+		else {
+			$rspta=$cuadrilla->editar($id_cuadrilla,$nombre_cuadrilla);
+			echo $rspta ? "Categoría actualizada" : "Categoría no se pudo actualizar";
+		}
+	break;
+
+	case 'editar':
+			$rspta=$cuadrilla->editar($id_cuadrilla,$nombre_cuadrilla);
 			echo $rspta ? "Categoría registrada" : "Categoría no se pudo registrar";
 	break;
 
@@ -30,7 +41,7 @@ switch ($_GET["op"]){
 
  		while ($reg=$rspta->fetch_object()){
  			$data[]=array(
- 				"0"=>$reg->id_cuadrilla,
+ 				"0"=>'<button class="btn btn-warning" onclick="mostrar('.$reg->id_cuadrilla.')"><i class="fa fa-pencil"></i></button>',
  				"1"=>$reg->nombre_cuadrilla,
  				);
  		}

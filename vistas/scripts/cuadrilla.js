@@ -6,13 +6,14 @@ function init(){
 
     $("#formulario").on("submit",function(e)
 	{
-		guardar(e);	
+        guardaryeditar(e);
 	})
 }
 
 function limpiar(){
-    $("#id_cuadrilla").val("");
+    
     $("#nombre_cuadrilla").val("");
+    $("#id_cuadrilla").val("");
 }
 
 function mostrarForm(flag){
@@ -62,14 +63,14 @@ function listar(){
         }).DataTable();
 }
 
-function guardar(e){
+function guardaryeditar(e){
     e.preventDefault(); //No se activará la acción predeterminada del evento
 	$("#btnGuardar").prop("disabled",true);
     var formData = new FormData($("#formulario")[0]);
 
 
 	$.ajax({
-		url: "../ajax/cuadrilla.php?op=guardar",
+		url: "../ajax/cuadrilla.php?op=guardaryeditar",
 	    type: "POST",
 	    data: formData,
 	    contentType: false,
@@ -88,30 +89,19 @@ function guardar(e){
 	limpiar();
 }
 
-function editar(e){
-    e.preventDefault(); //No se activará la acción predeterminada del evento
-	$("#btnGuardar").prop("disabled",true);
-    var formData = new FormData($("#formulario")[0]);
 
+function mostrar(id_cuadrilla)
+{
+    $.post("../ajax/cuadrilla.php?op=mostrar",{id_cuadrilla : id_cuadrilla}, function(data, status)
+    {
+        console.log(data);
+        data = JSON.parse(data);        
+        mostrarForm(true);
 
-	$.ajax({
-		url: "../ajax/cuadrilla.php?op=guardar",
-	    type: "POST",
-	    data: formData,
-	    contentType: false,
-	    processData: false,
-
-
-	    success: function(datos)
-	    {                    
-	          alert(datos);	          
-	          mostrarForm(false);
-              tabla.ajax.reload();
-              location.reload(); //recargo pagina pq el boton se bugea del submit
-	    }
-
-	});
-	limpiar();
+        $("#nombre_cuadrilla").val(data.nombre_cuadrilla);
+        $("#id_cuadrilla").val(data.id_cuadrilla);
+ 
+    })
 }
 
 init();
