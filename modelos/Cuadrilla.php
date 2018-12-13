@@ -20,6 +20,12 @@ Class Cuadrilla{
         return ejecutarConsulta($sql);
     }
 
+    public function editar($id_cuadrilla,$nombre_cuadrilla)
+	{
+		$sql="UPDATE cuadrilla SET nombre_cuadrilla='$nombre_cuadrilla' WHERE idcategoria='$id_cuadrilla'";
+		return ejecutarConsulta($sql);
+	}
+
 }
 
 

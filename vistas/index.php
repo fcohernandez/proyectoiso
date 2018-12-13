@@ -153,7 +153,7 @@
               <div class="col-md-12">
                   <div class="box">
                     <div class="box-header with-border">
-                          <h1 class="box-title">Cuadrilla <button class="btn btn-success" id="btnagregar" onclick="mostrarform(true)"><i class="fa fa-plus-circle"></i> Agregar</button></h1>
+                          <h1 class="box-title">Cuadrilla <button class="btn btn-success" id="btnagregar" onclick="mostrarForm(true)"><i class="fa fa-plus-circle"></i> Agregar</button></h1>
                         <div class="box-tools pull-right">
                         </div>
                     </div>
@@ -161,15 +161,13 @@
                     <!-- centro -->
                     <div class="panel-body table-responsive" id="listadoregistros">
                         <table id="tbllistado" class="table table-striped table-bordered table-condensed table-hover">
-                          <thead>
-                            
+                          <thead> 
                             <th>ID</th>
                             <th>Nombre</th>
                           </thead>
                           <tbody>                            
                           </tbody>
                           <tfoot>
-                            
                             <th>ID</th>
                             <th>Nombre</th>
                           </tfoot>
@@ -177,15 +175,18 @@
                     </div>
                     <div class="panel-body" style="height: 400px;" id="formularioregistros">
                         <form name="formulario" id="formulario" method="POST">
+                            <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <label>Id cuadrilla:</label>
+                                <input type="text" class="form-control" name="id_cuadrilla" id="id_cuadrilla" maxlength="20" placeholder="id cuadrilla" required>
+                            </div>
                           <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <label>Nombre:</label>
-                            <input type="hidden" name="id_cuadrilla" id="id_cuadrilla">
-                            <input type="text" class="form-control" name="nombre_cuadrilla" id="nombre_cuadrilla" maxlength="50" placeholder="nombre_cuadrilla" required>
+                            <label>Nombre cuadrilla:</label>
+                            <input type="text" class="form-control" name="nombre_cuadrilla" id="nombre_cuadrilla" maxlength="20" placeholder="nombre cuadrilla" required>
                           </div>
                           <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <button class="btn btn-primary" type="submit" id="btnGuardar"><i class="fa fa-save"></i> Guardar</button>
+                            <button class="btn btn-primary" type="submit" id="btnGuardar" ><i class="fa fa-save"></i> Guardar</button>
 
-                            <button class="btn btn-danger" onclick="cancelarform()" type="button"><i class="fa fa-arrow-circle-left"></i> Cancelar</button>
+                            <button class="btn btn-danger" onclick="cancelarForm()" type="button"><i class="fa fa-arrow-circle-left"></i> Cancelar</button>
                           </div>
                         </form>
                     </div>
@@ -258,7 +259,7 @@
     <script src="../public/vendor/datatables/dataTables.bootstrap4.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin.min.js"></script>
+    <script src="../public/js/sb-admin.min.js"></script>
     
 
     <!-- Demo scripts for this page-->

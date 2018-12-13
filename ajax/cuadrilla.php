@@ -7,15 +7,9 @@ $id_cuadrilla=isset($_POST["id_cuadrilla"])? limpiarCadena($_POST["id_cuadrilla"
 $nombre_cuadrilla=isset($_POST["nombre_cuadrilla"])? limpiarCadena($_POST["nombre_cuadrilla"]):"";
 
 switch ($_GET["op"]){
-	case 'guardaryeditar':
-		if (empty($id_cuadrilla)){
-			$rspta=$cuadrilla->insertar($nombre_cuadrilla,$descripcion);
+	case 'guardar':
+			$rspta=$cuadrilla->insertar($id_cuadrilla,$nombre_cuadrilla);
 			echo $rspta ? "Categoría registrada" : "Categoría no se pudo registrar";
-		}
-		else {
-			$rspta=$cuadrilla->editar($id_cuadrilla,$nombre_cuadrilla,$descripcion);
-			echo $rspta ? "Categoría actualizada" : "Categoría no se pudo actualizar";
-		}
 	break;
 
 	case 'desactivar':
