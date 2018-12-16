@@ -23,11 +23,14 @@
     <!-- Custom styles for this template-->
     <link href="../public/css/sb-admin.css" rel="stylesheet">
 
+    <link href="../public/vendor/fontawesome-free/css/fontawesome.css" rel="stylesheet" >
 
     <!-- datatables-->
     <link href="../public/datatables/jquery.dataTables.min.css" rel="stylesheet">
     <link href="../public/datatables/buttons.dataTables.min.css" rel="stylesheet">
     <link href="../public/datatables/responsive.dataTables.min.css" rel="stylesheet">
+
+    <link href="../public/css/bootstrap-select.min.css" rel="stylesheet">
 
   </head>
 
@@ -153,7 +156,7 @@
               <div class="col-md-12">
                   <div class="box">
                     <div class="box-header with-border">
-                          <h1 class="box-title">Cuadrilla <button class="btn btn-success" id="btnagregar" onclick="mostrarForm(true)"><i class="fa fa-plus-circle"></i> Agregar</button></h1>
+                          <h1 class="box-title">Brigadistas </h1>
                         <div class="box-tools pull-right">
                         </div>
                     </div>
@@ -161,31 +164,49 @@
                     <!-- centro -->
                     <div class="panel-body table-responsive" id="listadoregistros">
                         <table id="tbllistado" class="table table-striped table-bordered table-condensed table-hover">
-                          <thead> 
+                          <thead>
                             <th>Opciones</th>
+                            <th>Rut</th>
+                            <th>Cuadrilla</th>
                             <th>Nombre</th>
+                            <th>Apellido</th>
                           </thead>
                           <tbody>                            
                           </tbody>
                           <tfoot>
                             <th>Opciones</th>
+                            <th>Rut</th>
+                            <th>Cuadrilla</th>
                             <th>Nombre</th>
+                            <th>Apellido</th>
                           </tfoot>
                         </table>
                     </div>
                     <div class="panel-body" style="height: 400px;" id="formularioregistros">
                         <form name="formulario" id="formulario" method="POST">
                         <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <label>Nombre cuadrilla:</label>
-                            <input type="hidden" name="id_cuadrilla" id="id_cuadrilla">
-                            <input type="text" class="form-control" name="nombre_cuadrilla" id="nombre_cuadrilla" maxlength="20" placeholder="nombre cuadrilla" required>
-                          </div>
+                            <label>Rut :</label>
+                            <input type="text" class="form-control" name="rut" id="rut" maxlength="10" placeholder="Rut" readonly="readonly" required>
+                        </div>
+                        <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <label>Nombre :</label>
+                            <input type="text" class="form-control" name="nombre" id="nombre" maxlength="20" placeholder="Nombre" readonly="readonly" required>
+                        </div>
+                        <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <label>Apellido :</label>
+                            <input type="text" class="form-control" name="apellido" id="apellido" maxlength="20" placeholder="Apellido" readonly="readonly" required>
+                        </div>
+                        <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <label>Cuadrilla :</label>
+                            <select name="id_cuadrilla" id="id_cuadrilla" class="form-control selectpicker" required></select>
+                        </div>
                           <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <button class="btn btn-primary" type="submit" id="btnGuardar" ><i class="fa fa-save"></i> Guardar</button>
                             <button class="btn btn-danger" onclick="cancelarForm()" type="button"><i class="fa fa-arrow-circle-left"></i> Cancelar</button>
                           </div>
                         </form>
                     </div>
+                  
                     <!--Fin centro -->
                   </div><!-- /.box -->
               </div><!-- /.col -->
@@ -273,8 +294,9 @@
 
     
 
-    <script type="text/javascript" src="scripts/cuadrilla.js"></script>
-    
+    <script type="text/javascript" src="scripts/brigadista.js"></script>
+    <script src="../public/js/bootbox.min.js"></script>
+    <script src="../public/js/bootstrap-select.min.js"></script>
 
   </body>
 

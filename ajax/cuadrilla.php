@@ -10,22 +10,22 @@ switch ($_GET["op"]){
 	case 'guardaryeditar':
 		if (empty($id_cuadrilla)){
 			$rspta=$cuadrilla->insertar($nombre_cuadrilla);
-			echo $rspta ? "Categoría registrada" : "Categoría no se pudo registrar";
+			echo $rspta ? "Cuadrilla registrada" : "Cuadrilla no se pudo registrar";
 		}
 		else {
 			$rspta=$cuadrilla->editar($id_cuadrilla,$nombre_cuadrilla);
-			echo $rspta ? "Categoría actualizada" : "Categoría no se pudo actualizar";
+			echo $rspta ? "Cuadrilla actualizada" : "Cuadrilla no se pudo actualizar";
 		}
-	break;
-
-	case 'editar':
-			$rspta=$cuadrilla->editar($id_cuadrilla,$nombre_cuadrilla);
-			echo $rspta ? "Categoría registrada" : "Categoría no se pudo registrar";
 	break;
 
 	case 'desactivar':
 		$rspta=$cuadrilla->desactivar($id_cuadrilla);
- 		echo $rspta ? "Categoría Desactivada" : "Categoría no se puede desactivar";
+ 		echo $rspta ? "Cuadrilla Desactivada" : "Cuadrilla no se puede desactivar";
+	break;
+
+	case 'activar':
+		$rspta=$cuadrilla->activar($id_cuadrilla);
+ 		echo $rspta ? "Cuadrilla Activada" : "Cuadrilla no se puede activar";
 	break;
 
 	case 'mostrar':
@@ -41,8 +41,12 @@ switch ($_GET["op"]){
 
  		while ($reg=$rspta->fetch_object()){
  			$data[]=array(
- 				"0"=>'<button class="btn btn-warning" onclick="mostrar('.$reg->id_cuadrilla.')"><i class="fa fa-pencil"></i></button>',
- 				"1"=>$reg->nombre_cuadrilla,
+				 "0"=>($reg->estado)?'<button class="btn btn-warning" onclick="mostrar('.$reg->id_cuadrilla.')"><i class="fa fa-pencil-alt"></i></button>' . 
+				 ' <button class="btn btn-danger" onclick="desactivar('.$reg->id_cuadrilla.')"><i class="fa fa-window-close"></i></button>':
+				 '<button class="btn btn-warning" onclick="mostrar('.$reg->id_cuadrilla.')"><i class="fa fa-pencil-alt"></i></button>' . 
+				 ' <button class="btn btn-primary" onclick="activar('.$reg->id_cuadrilla.')"><i class="fa fa-check"></i></button>',
+				 "1"=>$reg->nombre_cuadrilla,
+				 "2"=>($reg->estado)?'Activa':'Desactivada'
  				);
  		}
  		$results = array(
@@ -51,7 +55,8 @@ switch ($_GET["op"]){
  			"iTotalDisplayRecords"=>count($data), //enviamos el total registros a visualizar
  			"aaData"=>$data);
  		echo json_encode($results);
-
 	break;
+
+	
 }
 ?>

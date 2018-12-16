@@ -3,16 +3,25 @@ var tabla;
 function init(){
     mostrarForm(false);
     listar();
+    
 
     $("#formulario").on("submit",function(e)
 	{
-        guardaryeditar(e);
-	})
+        editar(e);
+    
+    })
+    
+    $.post("../ajax/brigadista.php?op=selectCuadrilla", function(r){
+        $("#id_cuadrilla").html(r);
+        $('#id_cuadrilla').selectpicker('refresh');
+
+    });
 }
 
 function limpiar(){
-    
-    $("#nombre_cuadrilla").val("");
+    $("#apellido").val("");
+    $("#rut").val("");
+    $("#nombre").val("");
     $("#id_cuadrilla").val("");
 }
 
@@ -23,17 +32,20 @@ function mostrarForm(flag){
         $("#listadoregistros").hide();
         $("#formularioregistros").show();
         $("#btnguardar").prop("disabled",false);
-        $("#btnagregar").hide();
+        
     }else{
         $("#listadoregistros").show();
         $("#formularioregistros").hide();
-        $("#btnagregar").show();
+        
     }
 }
+
+
 
 function cancelarForm(){
     limpiar();
     mostrarForm(false);
+
 }
 
 function listar(){
@@ -50,7 +62,7 @@ function listar(){
                     ],
             "ajax":
                     {
-                        url: '../ajax/cuadrilla.php?op=listar',
+                        url: '../ajax/brigadista.php?op=listar',
                         type : "get",
                         dataType : "json",						
                         error: function(e){
@@ -63,14 +75,14 @@ function listar(){
         }).DataTable();
 }
 
-function guardaryeditar(e){
+function editar(e){
     e.preventDefault(); //No se activará la acción predeterminada del evento
 	$("#btnGuardar").prop("disabled",false);
     var formData = new FormData($("#formulario")[0]);
-
+    console.log(formData);
 
 	$.ajax({
-		url: "../ajax/cuadrilla.php?op=guardaryeditar",
+		url: "../ajax/brigadista.php?op=editar",
 	    type: "POST",
 	    data: formData,
 	    contentType: false,
@@ -78,11 +90,13 @@ function guardaryeditar(e){
 
 
 	    success: function(datos)
-	    {                    
+	    {        
+                        
 	          bootbox.alert(datos);	          
 	          mostrarForm(false);
               tabla.ajax.reload();
-              //location.reload(); //recargo pagina pq el boton se bugea del submit
+              
+              
 	    }
 
 	});
@@ -90,45 +104,26 @@ function guardaryeditar(e){
 }
 
 
-function mostrar(id_cuadrilla)
-{
-    $.post("../ajax/cuadrilla.php?op=mostrar",{id_cuadrilla : id_cuadrilla}, function(data, status)
-    {
-        data = JSON.parse(data);        
-        mostrarForm(true);
 
-        $("#nombre_cuadrilla").val(data.nombre_cuadrilla);
+function mostrar(rut)
+{
+    $.post("../ajax/brigadista.php?op=mostrar",{rut : rut}, function(data, status)
+    {
+        data = JSON.parse(data);     
+        mostrarForm(true);
+        console.log(data);
+        $("#apellido").val(data.apellido);
+        $("#nombre").val(data.nombre);
         $("#id_cuadrilla").val(data.id_cuadrilla);
+        $("#id_cuadrilla").selectpicker('refresh');
+        $("#rut").val(data.rut);
+
+        
  
     })
 }
 
-function desactivar(id_cuadrilla){
 
-    bootbox.confirm("¿Está Seguro de desactivar la Cuadrilla?", function(result){
-        if(result)
-        {
-            $.post("../ajax/cuadrilla.php?op=desactivar", {id_cuadrilla : id_cuadrilla}, function(e){
-                bootbox.alert(e);
-                tabla.ajax.reload();
-            }); 
-        }
-    })
 
-}
-
-function activar(id_cuadrilla){
-
-    bootbox.confirm("¿Está Seguro de activar la Cuadrilla?", function(result){
-        if(result)
-        {
-            $.post("../ajax/cuadrilla.php?op=activar", {id_cuadrilla : id_cuadrilla}, function(e){
-                bootbox.alert(e);
-                tabla.ajax.reload();
-            }); 
-        }
-    })
-
-}
 
 init();
