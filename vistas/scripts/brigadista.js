@@ -117,11 +117,10 @@ function mostrar(rut)
         $("#id_cuadrilla").val(data.id_cuadrilla);
         $("#id_cuadrilla").selectpicker('refresh');
         $("#rut").val(data.rut);
-
-        
- 
     })
 }
+
+
 
 
 

@@ -26,18 +26,36 @@ switch ($_GET["op"]){
 	break;
 
 	case 'listar':
+		require_once "../modelos/Cuadrilla.php";
+		$cuadrilla = new Cuadrilla();
 		$rspta=$brigadista->listar();
+		
  		//Vamos a declarar un array
- 		$data= Array();
+		 $data= Array();
+		 $nombreCuadrilla=null;
 
  		while ($reg=$rspta->fetch_object()){
+
+			//verificamos si la id_cuadrilla no es null
+			if(!is_null($reg->id_cuadrilla)){
+				$rsptaCuadrilla = $cuadrilla->select();
+				while ($regCuadrilla=$rsptaCuadrilla->fetch_object()){//recorremos la tabla cuadrilla hasta que los ID coincidan
+					if($regCuadrilla->id_cuadrilla == $reg->id_cuadrilla){
+						$nombreCuadrilla = $regCuadrilla->nombre_cuadrilla;
+						break;
+					}
+				}
+			}
+
  			$data[]=array(
                  "0"=>'<button class="btn btn-warning" onclick="mostrar('.$reg->rut.')"><i class="fa fa-pencil-alt"></i></button>',
 				 "1"=>$reg->rut,
-				 "2"=>$reg->id_cuadrilla,
+				 "2"=>$nombreCuadrilla, //mostramos el nombre de la cuadrilla
                  "3"=>$reg->nombre,
                  "4"=>$reg->apellido
- 				);
+				 );
+				 
+				 $nombreCuadrilla=null;
  		}
  		$results = array(
  			"sEcho"=>1, //Información para el datatables
@@ -46,7 +64,7 @@ switch ($_GET["op"]){
  			"aaData"=>$data);
  		echo json_encode($results);
 
-    break;
+	break;
     
     case 'selectCuadrilla':
             require_once "../modelos/Cuadrilla.php";

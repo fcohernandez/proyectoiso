@@ -276,9 +276,9 @@
 
     
 
-    <script type="text/javascript" src="scripts/cuadrilla.js"></script>
+    
     <script src="../public/js/bootbox.min.js"></script>
-
+    <script type="text/javascript" src="scripts/cuadrilla.js"></script>
   </body>
 
 </html>

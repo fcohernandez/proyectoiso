@@ -42,9 +42,11 @@ switch ($_GET["op"]){
  		while ($reg=$rspta->fetch_object()){
  			$data[]=array(
 				 "0"=>($reg->estado)?'<button class="btn btn-warning" onclick="mostrar('.$reg->id_cuadrilla.')"><i class="fa fa-pencil-alt"></i></button>' . 
-				 ' <button class="btn btn-danger" onclick="desactivar('.$reg->id_cuadrilla.')"><i class="fa fa-window-close"></i></button>':
+				 ' <button class="btn btn-danger" onclick="desactivar('.$reg->id_cuadrilla.')"><i class="fa fa-window-close"></i></button>' . 
+				 ' <button class="btn btn-primary" onclick="mostrarBrigadistas('.$reg->id_cuadrilla.')">Listar brigadistas</button>':
 				 '<button class="btn btn-warning" onclick="mostrar('.$reg->id_cuadrilla.')"><i class="fa fa-pencil-alt"></i></button>' . 
-				 ' <button class="btn btn-primary" onclick="activar('.$reg->id_cuadrilla.')"><i class="fa fa-check"></i></button>',
+				 ' <button class="btn btn-primary" onclick="activar('.$reg->id_cuadrilla.')"><i class="fa fa-check"></i></button>' . 
+				 ' <button class="btn btn-primary" onclick="mostrarBrigadistas('.$reg->id_cuadrilla.')">Listar brigadistas</button>',
 				 "1"=>$reg->nombre_cuadrilla,
 				 "2"=>($reg->estado)?'Activa':'Desactivada'
  				);
@@ -57,6 +59,14 @@ switch ($_GET["op"]){
  		echo json_encode($results);
 	break;
 
+	case 'listarBrigadistas':
+		require_once "../modelos/Brigadista.php";
+		$brigadista = new Brigadista();
+		$rspta=$brigadista->listar();
+ 		
+ 		echo json_encode($rspta);
+	break;
 	
 }
 ?>
+

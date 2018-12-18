@@ -30,7 +30,7 @@
     <link href="../public/datatables/buttons.dataTables.min.css" rel="stylesheet">
     <link href="../public/datatables/responsive.dataTables.min.css" rel="stylesheet">
 
-    <link href="../public/css/bootstrap-select.min.css" rel="stylesheet">
+    <link href="../public/css/bootstrap-select.css" rel="stylesheet">
 
   </head>
 
@@ -297,6 +297,7 @@
     <script type="text/javascript" src="scripts/brigadista.js"></script>
     <script src="../public/js/bootbox.min.js"></script>
     <script src="../public/js/bootstrap-select.min.js"></script>
+    <script src="../public/js/bootstrap-select.js"></script>
 
   </body>
 

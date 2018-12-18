@@ -31,6 +31,8 @@ function mostrarForm(flag){
     }
 }
 
+
+
 function cancelarForm(){
     limpiar();
     mostrarForm(false);
@@ -62,6 +64,8 @@ function listar(){
             "order": [[ 0, "desc" ]]//Ordenar (columna,orden)
         }).DataTable();
 }
+
+
 
 function guardaryeditar(e){
     e.preventDefault(); //No se activará la acción predeterminada del evento
@@ -96,10 +100,29 @@ function mostrar(id_cuadrilla)
     {
         data = JSON.parse(data);        
         mostrarForm(true);
+        console.log(data);
 
         $("#nombre_cuadrilla").val(data.nombre_cuadrilla);
         $("#id_cuadrilla").val(data.id_cuadrilla);
  
+    })
+}
+
+function mostrarBrigadistas(id_cuadrilla)
+{
+    $.post("../ajax/cuadrilla.php?op=listarBrigadistas",{id_cuadrilla : id_cuadrilla}, function(data, status)
+    {   
+        
+        //data = JSON.parse(data);   
+        console.log(id_cuadrilla);
+        console.log(data);
+            
+        
+        
+        
+
+        //$("#rut").val(data[0]);
+       
     })
 }
 
