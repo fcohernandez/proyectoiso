@@ -9,20 +9,16 @@ $rut=isset($_POST["rut"])? limpiarCadena($_POST["rut"]):"";
 $apellido=isset($_POST["apellido"])? limpiarCadena($_POST["apellido"]):"";
 
 switch ($_GET["op"]){
-	case 'guardar':
-			$rspta=$brigadista->insertar($rut,$id_cuadrilla,$nombre,$apellido);
-			echo $rspta ? "Brigadista registrado" : "Brigadista no se pudo registrar";
-	break;
-
 	case 'editar':
 			$rspta=$brigadista->editar($rut,$id_cuadrilla);
 			echo $rspta ? "Brigadista asignado a su cuadrilla" : "Brigadista no se pudo asignar";
 	break;
 
 	case 'mostrar':
+		echo $rut;
 		$rspta=$brigadista->mostrar($rut);
  		//Codificar el resultado utilizando json
- 		echo json_encode($rspta);
+ 		
 	break;
 
 	case 'listar':
@@ -50,7 +46,8 @@ switch ($_GET["op"]){
  			$data[]=array(
                  "0"=>'<button class="btn btn-warning" onclick="mostrar('.$reg->rut.')"><i class="fa fa-pencil-alt"></i></button>',
 				 "1"=>$reg->rut,
-				 "2"=>$nombreCuadrilla, //mostramos el nombre de la cuadrilla
+				 "2"=>(is_null($nombreCuadrilla))?'<span class="btn-warning">Cuadrilla sin Asignar</span>':
+				 '<span class="label bg-red">'.$nombreCuadrilla.'</span>', //mostramos el nombre de la cuadrilla
                  "3"=>$reg->nombre,
                  "4"=>$reg->apellido
 				 );

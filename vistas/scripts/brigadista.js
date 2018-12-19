@@ -79,7 +79,7 @@ function editar(e){
     e.preventDefault(); //No se activará la acción predeterminada del evento
 	$("#btnGuardar").prop("disabled",false);
     var formData = new FormData($("#formulario")[0]);
-    console.log(formData);
+    console.log(datos);
 
 	$.ajax({
 		url: "../ajax/brigadista.php?op=editar",
