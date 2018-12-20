@@ -108,23 +108,7 @@ function mostrar(id_cuadrilla)
     })
 }
 
-function mostrarBrigadistas(id_cuadrilla)
-{
-    $.post("../ajax/cuadrilla.php?op=listarBrigadistas",{id_cuadrilla : id_cuadrilla}, function(data, status)
-    {   
-        
-        //data = JSON.parse(data);   
-        console.log(id_cuadrilla);
-        console.log(data);
-            
-        
-        
-        
 
-        //$("#rut").val(data[0]);
-       
-    })
-}
 
 function desactivar(id_cuadrilla){
 

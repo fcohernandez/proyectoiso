@@ -158,10 +158,10 @@
                         </table>
                     </div>
                     <div class="panel-body" style="height: 400px;" id="formularioregistros">
-                        <form name="formulario" id="formulario" method="POST">
+                      <form name="formulario" id="formulario" method="POST">
                         <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <label>Rut :</label>
-                            <input type="text" class="form-control" name="rut" id="rut" maxlength="10" placeholder="Rut" readonly="readonly" required>
+                            <input type="text" class="form-control" name="rut" id="rut" maxlength="12" placeholder="Rut" readonly="readonly" required>
                         </div>
                         <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <label>Nombre :</label>
@@ -180,6 +180,7 @@
                             <button class="btn btn-danger" onclick="cancelarForm()" type="button"><i class="fa fa-arrow-circle-left"></i> Cancelar</button>
                           </div>
                         </form>
+
                     </div>
                   
                     <!--Fin centro -->

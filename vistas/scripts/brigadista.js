@@ -52,7 +52,7 @@ function listar(){
     tabla=$('#tbllistado').dataTable(
         {
             "aProcessing": true,//Activamos el procesamiento del datatables
-            "aServerSide": true,//Paginación y filtrado realizados por el servidor
+            "aServerSide": true,//PaginaciÃ³n y filtrado realizados por el servidor
             dom: 'Bfrtip',//Definimos los elementos del control de tabla
             buttons: [		          
                 'copyHtml5',
@@ -70,16 +70,16 @@ function listar(){
                         }
                     },
             "bDestroy": true,
-            "iDisplayLength": 5,//Paginación
+            "iDisplayLength": 5,//PaginaciÃ³n
             "order": [[ 0, "desc" ]]//Ordenar (columna,orden)
         }).DataTable();
 }
 
 function editar(e){
-    e.preventDefault(); //No se activará la acción predeterminada del evento
+    e.preventDefault(); //No se activarÃ¡ la acciÃ³n predeterminada del evento
 	$("#btnGuardar").prop("disabled",false);
     var formData = new FormData($("#formulario")[0]);
-    console.log(datos);
+    
 
 	$.ajax({
 		url: "../ajax/brigadista.php?op=editar",
@@ -109,14 +109,17 @@ function mostrar(rut)
 {
     $.post("../ajax/brigadista.php?op=mostrar",{rut : rut}, function(data, status)
     {
+        
         data = JSON.parse(data);     
         mostrarForm(true);
         console.log(data);
+
+        $("#rut").val(data.rut);
         $("#apellido").val(data.apellido);
         $("#nombre").val(data.nombre);
         $("#id_cuadrilla").val(data.id_cuadrilla);
         $("#id_cuadrilla").selectpicker('refresh');
-        $("#rut").val(data.rut);
+        
     })
 }
 

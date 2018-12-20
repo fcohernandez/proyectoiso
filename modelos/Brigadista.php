@@ -37,17 +37,7 @@ Class Brigadista{
         $sql = "SELECT * FROM brigadista WHERE id_cuadrilla = '$id_cuadrilla'";
         return ejecutarConsulta($sql);
     }
-/*
-    public function desactivar($id_cuadrilla){
-        $sql="UPDATE cuadrilla SET estado='0' WHERE id_cuadrilla='$id_cuadrilla'";
-		return ejecutarConsulta($sql);
-    }
 
-    public function activar($id_cuadrilla){
-        $sql="UPDATE cuadrilla SET estado='1' WHERE id_cuadrilla='$id_cuadrilla'";
-		return ejecutarConsulta($sql);
-    }
-*/
 }
 
 
