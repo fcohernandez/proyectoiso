@@ -128,7 +128,7 @@
               <div class="col-md-12">
                   <div class="box">
                     <div class="box-header with-border">
-                          <h1 class="box-title">Cuadrilla <button class="btn btn-success" id="btnagregar" onclick="mostrarForm(true)"><i class="fa fa-plus-circle"></i> Agregar</button></h1>
+                          <h1 class="box-title">Permisos <button class="btn btn-success" id="btnagregar" onclick="mostrarForm(true)"><i class="fa fa-plus-circle"></i> Agregar</button></h1>
                         <div class="box-tools pull-right">
                         </div>
                     </div>
@@ -137,39 +137,12 @@
                     <div class="panel-body table-responsive" id="listadoregistros">
                         <table id="tbllistado" class="table table-striped table-bordered table-condensed table-hover">
                           <thead> 
-                            <th>Opciones</th>
                             <th>Nombre</th>
-                            <th>Estado</th>
                           </thead>
                           <tbody>                            
                           </tbody>
                           <tfoot>
-                            <th>Opciones</th>
                             <th>Nombre</th>
-                            <th>Estado</th>
-                          </tfoot>
-                        </table>
-                    </div>
-                    <br>
-                    <br>
-                    
-                    <h1>BRIGADISTAS</h1>
-                    <br>
-                    <div class="panel-body table-responsive" id="listadoregistros">
-                        <table id="tbllistadobrigadistas" class="table table-striped table-bordered table-condensed table-hover">
-                          <thead>
-                            <th>Rut</th>
-                            <th>Cuadrilla</th>
-                            <th>Nombre</th>
-                            <th>Apellido</th>
-                          </thead>
-                          <tbody>                            
-                          </tbody>
-                          <tfoot>
-                            <th>Rut</th>
-                            <th>Cuadrilla</th>
-                            <th>Nombre</th>
-                            <th>Apellido</th>
                           </tfoot>
                         </table>
                     </div>
@@ -275,7 +248,7 @@
 
     
     <script src="../public/js/bootbox.min.js"></script>
-    <script type="text/javascript" src="scripts/cuadrilla.js"></script>
+    <script type="text/javascript" src="scripts/permiso.js"></script>
   </body>
 
 </html>

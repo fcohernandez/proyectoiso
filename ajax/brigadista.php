@@ -8,6 +8,7 @@ $nombre=isset($_POST["nombre"])? limpiarCadena($_POST["nombre"]):"";
 $rut=isset($_POST["rut"])? limpiarCadena($_POST["rut"]):"";
 $apellido=isset($_POST["apellido"])? limpiarCadena($_POST["apellido"]):"";
 
+
 switch ($_GET["op"]){
 
 
@@ -78,6 +79,8 @@ switch ($_GET["op"]){
                     echo '<option value=' . $reg->id_cuadrilla . '>' . $reg->nombre_cuadrilla . '</option>';
             }
 
-    break;
+	break;
+	
+	
 }
 ?>

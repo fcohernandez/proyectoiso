@@ -1,4 +1,5 @@
 var tabla;
+var tabla1 = 'asd';
 
 function init(){
     mostrarForm(false);
@@ -135,6 +136,40 @@ function activar(id_cuadrilla){
             }); 
         }
     })
+
+}
+
+function listarBrigadistas(id_cuadrilla)
+{
+    
+    
+            $.post("../ajax/cuadrilla.php?op=listarBrigadistas", {id_cuadrilla : id_cuadrilla}, function(data){
+
+                data = JSON.parse(data);
+                if(data.aaData.length == 0){
+                    bootbox.alert("No existen brigadistas en la cuadrilla seleccionada");
+                }
+                
+                console.log(data.aaData);
+                
+
+                    tabla1= $('#tbllistadobrigadistas').DataTable( {
+                        "aProcessing": true,//Activamos el procesamiento del datatables
+                        "aServerSide": true,//Paginación y filtrado realizados por el servidor
+                        dom: 'Bfrtip',//Definimos los elementos del control de tabla
+                        buttons: [		          
+                            'copyHtml5',
+                            'excelHtml5',
+                            'csvHtml5',
+                            'pdf'
+                        ],
+                        data: data.aaData,
+                        destroy: true,
+                    } );
+                    
+                    //ajax.tabla1.destroy();
+            }); 
+        
 
 }
 

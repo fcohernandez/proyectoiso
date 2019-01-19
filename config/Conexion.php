@@ -29,11 +29,12 @@ if (!function_exists('ejecutarConsulta'))
 		return $row;
 	}
 	//retornar llave primaria de registro insertado
+
 	function ejecutarConsulta_retornarID($sql)
 	{
 		global $conexion;
 		$query = $conexion->query($sql);		
-		return $conexion->insert_id;			
+		return $conexion->insert_id;
 	}
 
 	function limpiarCadena($str)

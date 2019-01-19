@@ -42,7 +42,8 @@ switch ($_GET["op"]){
  		while ($reg=$rspta->fetch_object()){
  			$data[]=array(
 				 "0"=>($reg->estado)?'<button class="btn btn-warning" onclick="mostrar('.$reg->id_cuadrilla.')"><i class="fa fa-pencil-alt"></i></button>' . 
-				 ' <button class="btn btn-danger" onclick="desactivar('.$reg->id_cuadrilla.')"><i class="fa fa-window-close"></i></button>':
+				 ' <button class="btn btn-danger" onclick="desactivar('.$reg->id_cuadrilla.')"><i class="fa fa-window-close"></i></button>' .
+				' <button onclick="listarBrigadistas('.$reg->id_cuadrilla.')">Listar</button>':
 				 '<button class="btn btn-warning" onclick="mostrar('.$reg->id_cuadrilla.')"><i class="fa fa-pencil-alt"></i></button>' . 
 				 ' <button class="btn btn-primary" onclick="activar('.$reg->id_cuadrilla.')"><i class="fa fa-check"></i></button>',
 				 "1"=>$reg->nombre_cuadrilla,
@@ -60,11 +61,29 @@ switch ($_GET["op"]){
 	case 'listarBrigadistas':
 		require_once "../modelos/Brigadista.php";
 		$brigadista = new Brigadista();
-		$rspta=$brigadista->listar();
+		$rspta=$brigadista->select($id_cuadrilla);
+
+		$data= Array();
+
+		
+
+ 		while ($reg=$rspta->fetch_object()){
+ 			$data[]=array(
+				 "0"=>$reg->rut,
+				 "1"=>$reg->id_cuadrilla,
+				 "2"=>$reg->nombre,
+				 "3"=>$reg->apellido
+ 				);
+ 		}
+ 		$results = array(
+ 			"sEcho"=>1, //Información para el datatables
+ 			"iTotalRecords"=>count($data), //enviamos el total registros al datatable
+ 			"iTotalDisplayRecords"=>count($data), //enviamos el total registros a visualizar
+ 			"aaData"=>$data);
  		
- 		echo json_encode($rspta);
+ 		echo json_encode($results);;
 	break;
-	
+
 }
 ?>
 
