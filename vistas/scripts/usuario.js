@@ -8,7 +8,7 @@ function init(){
     $("#formulario").on("submit",function(e)
     {
         guardaryeditar(e);  
-    })
+    });
 
     $.post("../ajax/usuario.php?op=permisos&id=",function(r){
         $("#permisos").html(r);

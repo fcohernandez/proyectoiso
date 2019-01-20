@@ -184,7 +184,7 @@
                           </div>
                           <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <label>Permisos:</label>
-                            <ul style="list-style: none;" id="permisos">
+                            <ul  id="permisos">
                                
                             </ul>
                           </div>

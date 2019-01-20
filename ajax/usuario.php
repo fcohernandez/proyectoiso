@@ -10,7 +10,7 @@ $apellido=isset($_POST["apellido"])? limpiarCadena($_POST["apellido"]):"";
 $login=isset($_POST["login"])? limpiarCadena($_POST["login"]):"";
 $clave=isset($_POST["clave"])? limpiarCadena($_POST["clave"]):"";
 $rut=isset($_POST["rut"])? limpiarCadena($_POST["rut"]):"";
-$permisos=isset($_POST['permiso']) ? $_POST['permiso']:[];
+$permisos=isset($_POST['permisos']) ? $_POST['permisos']:[];
  
 switch ($_GET["op"]){
     case 'guardaryeditar':
@@ -19,11 +19,11 @@ switch ($_GET["op"]){
         $clavehash=hash("SHA256",$clave,false);
  
         if (empty($id_usuario)){
-            $rspta=$usuario->insertar($rut,$nombre,$apellido,$login,$clavehash,$_POST['permiso']);
+            $rspta=$usuario->insertar($rut,$nombre,$apellido,$login,$clavehash,$permisos);
             echo $rspta ? "Usuario registrado" : "No se pudieron registrar todos los datos del usuario";
         }
         else {
-            $rspta=$usuario->editar($id_usuario,$rut,$nombre,$apellido,$login,$clavehash,$_POST['permiso']);
+            $rspta=$usuario->editar($id_usuario,$rut,$nombre,$apellido,$login,$clavehash,$permisos);
             echo $rspta ? "Usuario actualizado" : "Usuario no se pudo actualizar";
         }
     break;
@@ -94,7 +94,7 @@ switch ($_GET["op"]){
         while ($reg = $rspta->fetch_object())
                 {
                     $sw=in_array($reg->id_permiso,$valores)?'checked':'';
-                    echo '<li><input type="checkbox" name="permiso[]" value="'. $reg->id_permiso .'"' . $sw . ' > ' . $reg->nombre . '</li>';
+                    echo '<li><input type="checkbox" name="permiso" value="'. $reg->id_permiso .'"' . $sw . ' > ' . $reg->nombre . '</li>';
                 }
     break;
 

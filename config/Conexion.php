@@ -37,6 +37,8 @@ if (!function_exists('ejecutarConsulta'))
 		return $conexion->insert_id;
 	}
 
+	
+
 	function limpiarCadena($str)
 	{
 		global $conexion;
