@@ -30,12 +30,12 @@ if (!function_exists('ejecutarConsulta'))
 	}
 	//retornar llave primaria de registro insertado
 
-	function ejecutarConsulta_retornarID($sql)
-	{
-		global $conexion;
-		$query = $conexion->query($sql);		
-		return $conexion->insert_id;
-	}
+    function ejecutarConsulta_retornarID($sql){
+        global $conexion;
+        $query = $conexion->query($sql);
+        return $conexion->insert_id;
+
+    }
 
 	
 

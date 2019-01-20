@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,19 +10,26 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin - Blank Page</title>
+    <title>SB Admin - Dashboard</title>
 
     <!-- Bootstrap core CSS-->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../public/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom fonts for this template-->
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="../public/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 
     <!-- Page level plugin CSS-->
-    <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+    <link href="../public/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="css/sb-admin.css" rel="stylesheet">
+    <link href="../public/css/sb-admin.css" rel="stylesheet">
+
+    <link href="../public/vendor/fontawesome-free/css/fontawesome.css" rel="stylesheet" >
+
+    <!-- datatables-->
+    <link href="../public/datatables/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="../public/datatables/buttons.dataTables.min.css" rel="stylesheet">
+    <link href="../public/datatables/responsive.dataTables.min.css" rel="stylesheet">
 
   </head>
 
@@ -29,7 +37,7 @@
 
     <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-      <a class="navbar-brand mr-1" href="index.html">Start Bootstrap</a>
+      <a class="navbar-brand mr-1" href="#">Contra el fuego</a><i class="fas fa-fire"></i>
 
       <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
         <i class="fas fa-bars"></i>
@@ -92,58 +100,80 @@
 
       <!-- Sidebar -->
       <ul class="sidebar navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" href="index.html">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Dashboard</span>
-          </a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-fw fa-folder"></i>
-            <span>Pages</span>
-          </a>
-          <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-            <h6 class="dropdown-header">Login Screens:</h6>
-            <a class="dropdown-item" href="login.html">Login</a>
-            <a class="dropdown-item" href="register.html">Register</a>
-            <a class="dropdown-item" href="forgot-password.html">Forgot Password</a>
-            <div class="dropdown-divider"></div>
-            <h6 class="dropdown-header">Other Pages:</h6>
-            <a class="dropdown-item" href="404.html">404 Page</a>
-            <a class="dropdown-item active" href="blank.html">Blank Page</a>
-          </div>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="charts.html">
-            <i class="fas fa-fw fa-chart-area"></i>
-            <span>Charts</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="tables.html">
-            <i class="fas fa-fw fa-table"></i>
-            <span>Tables</span></a>
-        </li>
+        
+        <?php
+          if($_SESSION['cuadrillas'] == 1){
+            echo '<li class="nav-item">
+            <a class="nav-link" href="cuadrilla.php">
+              <i class="fas fa-fw fa-user-edit"></i>
+              <span>Administrar Cuadrillas</span></a>
+          </li>';
+          }
+        ?>
+        <?php
+          if($_SESSION['brigadistas'] == 1){
+            echo '<li class="nav-item">
+            <a class="nav-link" href="brigadista.php">
+              <i class="fas fa-fw fa-user-edit"></i>
+              <span>Administrar Brigadistas</span></a>
+          </li>';
+          }
+        ?>
+        <?php
+          if($_SESSION['permisos'] == 1){
+            echo '<li class="nav-item">
+            <a class="nav-link" href="permiso.php">
+              <i class="fas fa-fw fa-user-edit"></i>
+              <span>Ver permisos</span></a>
+          </li>';
+          }
+        ?>
+        <?php
+          if($_SESSION['usuarios'] == 1){
+            echo '<li class="nav-item">
+            <a class="nav-link" href="usuario.php">
+              <i class="fas fa-fw fa-user-edit"></i>
+              <span>Administrar Usuarios</span></a>
+          </li>';
+          }
+        ?>
+
       </ul>
 
       <div id="content-wrapper">
 
         <div class="container-fluid">
 
-          <!-- Breadcrumbs-->
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-              <a href="index.html">Dashboard</a>
-            </li>
-            <li class="breadcrumb-item active">Blank Page</li>
-          </ol>
+          
 
-          <!-- Page Content -->
-          <h1>Blank Page</h1>
-          <hr>
-          <p>This is a great starting point for new custom pages.</p>
+          <!--Contenido-->
+      <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper">        
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+              <div class="col-md-12">
+                  <div class="box">
+                    <div class="box-header with-border">
+                          <h1 class="box-title">Sin acceso </h1>
+                        <div class="box-tools pull-right">
+                        </div>
+                    </div>
+                    <!-- /.box-header -->
+                    <!-- centro -->
+        
+                    <!--Fin centro -->
+                  </div><!-- /.box -->
+              </div><!-- /.col -->
+          </div><!-- /.row -->
+      </section><!-- /.content -->
 
-        </div>
+    </div><!-- /.content-wrapper -->
+  <!--Fin-Contenido-->
+
+
+
+
         <!-- /.container-fluid -->
 
         <!-- Sticky Footer -->
@@ -185,15 +215,32 @@
       </div>
     </div>
 
+    
+
     <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../public/vendor/jquery/jquery.min.js"></script>
+    <script src="../public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    
 
     <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="../public/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Page level plugin JavaScript-->
+    <script src="../public/vendor/chart.js/Chart.min.js"></script>
+    <script src="../public/vendor/datatables/jquery.dataTables.js"></script>
+    <script src="../public/vendor/datatables/dataTables.bootstrap4.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin.min.js"></script>
+    <script src="../public/js/sb-admin.min.js"></script>
+    
+
+    <!-- Demo scripts for this page-->
+    <script src="../public/js/demo/datatables-demo.js"></script>
+    <script src="../public/js/demo/chart-area-demo.js"></script>
+
+
+    
+
 
   </body>
 

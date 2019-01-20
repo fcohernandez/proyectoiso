@@ -9,8 +9,21 @@ $nombre_cuadrilla=isset($_POST["nombre_cuadrilla"])? limpiarCadena($_POST["nombr
 switch ($_GET["op"]){
 	case 'guardaryeditar':
 		if (empty($id_cuadrilla)){
-			$rspta=$cuadrilla->insertar($nombre_cuadrilla);
-			echo $rspta ? "Cuadrilla registrada" : "Cuadrilla no se pudo registrar";
+			
+			$comparar = $cuadrilla->select();
+			$aviso = false;
+			while ($reg=$comparar->fetch_object()){
+					if(strcasecmp($reg->nombre_cuadrilla,$nombre_cuadrilla) === 0){
+						$aviso = "El nombre de cuadrilla ya se encuentra registrado";
+					}
+
+			}
+			if($aviso){
+				echo $aviso;
+			}else{
+				$rspta=$cuadrilla->insertar($nombre_cuadrilla);
+				echo $rspta ? "Cuadrilla registrada" : "Cuadrilla no se pudo registrar";
+			}	
 		}
 		else {
 			$rspta=$cuadrilla->editar($id_cuadrilla,$nombre_cuadrilla);

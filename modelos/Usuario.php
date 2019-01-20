@@ -10,10 +10,28 @@ Class Usuario{
     }
 
     public function insertar($rut,$nombre,$apellido,$login,$clave,$permisos){
-        $sql = "INSERT INTO `usuario` (`rut`,`nombre`, `apellido`,`login`, `clave`, `condicion`)
+        $sql = "INSERT INTO usuario (rut,nombre, apellido,login, clave, `condicion`)
                 VALUES ('$rut','$nombre','$apellido','$login','$clave', '1')";
-        return ejecutarConsulta($sql);
-        //$idusuario_new = ejecutarConsulta_retornarID($sql);
+        //return ejecutarConsulta($sql);
+        $idusuarionew = ejecutarConsulta_retornarID($sql);
+
+        $num_elementos = 0;
+
+        $sw = true;
+
+        if(empty($permisos)){
+            $permisos = [];
+        }
+
+        while($num_elementos < count($permisos)){
+            $sql_detalle = "INSERT INTO usuario_permiso(id_usuario,id_permiso) VALUES('$idusuarionew', '$permisos[$num_elementos]')";
+
+            ejecutarConsulta($sql_detalle) or $sw = false;
+
+            $num_elementos++;
+        }
+
+        return $sw;
 
     }
 
@@ -69,7 +87,7 @@ Class Usuario{
        }
 
        public function verificar($login,$clave){
-        $sql="SELECT id_usuario,rut,nombre,num_documento,telefono,email,cargo,imagen,login FROM usuario WHERE login='$login' AND clave='$clave' AND condicion='1'"; 
+        $sql="SELECT id_usuario,rut,nombre,apellido,login FROM usuario WHERE login='$login' AND clave='$clave' AND condicion='1'"; 
         return ejecutarConsulta($sql); 
        }
 

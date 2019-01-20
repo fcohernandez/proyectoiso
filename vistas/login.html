@@ -28,33 +28,23 @@
       <div class="card card-login mx-auto mt-5">
         <div class="card-header">Login</div>
         <div class="card-body">
-          <form>
-            <div class="form-group">
-              <div class="form-label-group">
-                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="required" autofocus="autofocus">
-                <label for="inputEmail">Email address</label>
-              </div>
+          <form method="POST" id="frmAcceso">
+            <div class="form-group has-feedback">
+              <input type="text" id="logina" name="logina" class="form-control" placeholder="Usuario">
+              <span class="fa fa-user form-control-feedback"></span>
             </div>
-            <div class="form-group">
-              <div class="form-label-group">
-                <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="required">
-                <label for="inputPassword">Password</label>
-              </div>
+            <div class="form-group has-feedback">
+              <input type="password" id="clavea" name="clavea" class="form-control" placeholder="Password">
+              <span class="fa fa-key form-control-feedback"></span>
             </div>
-            <div class="form-group">
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox" value="remember-me">
-                  Remember Password
-                </label>
-              </div>
-            </div>
-            <a class="btn btn-primary btn-block" href="index.html">Login</a>
+            <div class="row">
+              <div class="col-xs-8">
+                
+              </div><!-- /.col -->
+              <div class="col-xs-4">
+                <button type="submit" class="btn btn-primary btn-block btn-flat">Ingresar</button>
+              </div><!-- /.col -->
           </form>
-          <div class="text-center">
-            <a class="d-block small mt-3" href="register.html">Register an Account</a>
-            <a class="d-block small" href="forgot-password.html">Forgot Password?</a>
-          </div>
         </div>
       </div>
     </div>
@@ -65,6 +55,9 @@
 
     <!-- Core plugin JavaScript-->
     <script src="../public/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <script src="../public/js/bootbox.min.js"></script>
+    <script type="text/javascript" src="scripts/login.js"></script>
 
   </body>
 
